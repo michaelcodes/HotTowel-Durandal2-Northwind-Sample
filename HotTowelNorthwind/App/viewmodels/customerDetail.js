@@ -115,9 +115,9 @@ function (logger, router, dataContext) {
 
     //#region Internal Methods
 
-    function activate(routeData) {
+    function activate(id) {
         logger.log('Customer Detail View Activated', null, 'customerDetail', true);
-dataContext.getCustomerById(routeData.id);
+dataContext.getCustomerById(id);
         return true;
         //vm.customer({});
             //= 

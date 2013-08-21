@@ -115,10 +115,10 @@ function (logger, router, dataContext) {
 
     //#region Internal Methods
 
-    function activate(routeData) {
+    function activate(id) {
         logger.log('Order Detail View Activated', null, 'orderDetail', true);
 
-        return dataContext.getOrderById(parseInt(routeData.id), vm.order)
+        return dataContext.getOrderById(parseInt(id), vm.order)
                 
     }
 
