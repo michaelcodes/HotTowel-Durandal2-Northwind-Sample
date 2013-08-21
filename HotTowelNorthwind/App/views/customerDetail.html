@@ -1,0 +1,43 @@
+﻿<div class="container-fluid">
+    <div class="form-actions">
+        <button class="btn btn-inverse"
+            data-bind="click: goBack"><i class="icon-hand-left icon-white"></i> Back</button>
+        <button class="btn btn-inverse"
+            data-bind="click: cancel, enable: canSave"><i class="icon-undo icon-white"></i> Cancel</button>
+        <button class="btn btn-primary"
+            data-bind="click: save, enable: canSave"><i class="icon-save icon-white"></i> Save</button>
+        
+        <i class="icon-asterisk icon-red" data-bind="visible: hasChanges"></i>
+        
+        <button class="btn btn-danger pull-right"
+            data-bind="click: deleteCustomer, disable: hasChanges"><i class="icon-trash icon-white"></i> Delete
+        </button>
+    </div>
+
+    <div class="row-fluid" data-bind="with: customer">
+        <div class="span6">
+            <label>Name</label>
+            <input type="text" data-bind="value: CompanyName" />
+            <label>Contact</label>
+            <input type="text" data-bind="value: ContactName" />
+            <label>Title</label>
+            <input type="text" data-bind="value: ContactTitle" />
+            <label>Phone</label>
+            <input type="text" data-bind="value: Phone" />
+            <label>Fax</label>
+            <input type="text" data-bind="value: Fax" />
+        </div>
+        <div class="span6">
+            <label>Address</label>
+            <input type="text" data-bind="value: Address" />
+            <label>City</label>
+            <input type="text" data-bind="value: City" />
+            <label>Region</label>
+            <input type="text" data-bind="value: Region" />
+            <label>Postal Code</label>
+            <input type="text" data-bind="value: PostalCode" />
+            <label>Country</label>
+            <input type="text" data-bind="value: Country" />
+        </div>
+    </div>
+</div>

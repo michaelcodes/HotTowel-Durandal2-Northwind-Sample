@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Northwind.Db</id>
+    <version>1.0.0</version>
+    <title>Northwind Database</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <licenseUrl>http://northwinddatabase.codeplex.com/license</licenseUrl>
+    <projectUrl>http://northwinddatabase.codeplex.com/</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Northwind Sample database (for SQL Server 2005 and 2008).</description>
+    <releaseNotes />
+    <copyright />
+    <language />
+  </metadata>
+</package>

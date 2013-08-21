@@ -1,0 +1,13 @@
+﻿<nav class="navbar navbar-static-top">
+    <div class="navbar-inner">
+        <ul class="nav" data-bind="foreach: router.visibleRoutes">
+            <li data-bind="css: { active: isActive }">
+                <a data-bind="attr: { href: hash }, text: name" href="#"></a>
+            </li>
+        </ul>
+        <div data-bind="css: { active: router.isNavigating }" 
+            class="pull-right loader">
+            <i class="icon-spinner icon-2x icon-spin"></i>
+        </div>
+    </div>
+</nav>
