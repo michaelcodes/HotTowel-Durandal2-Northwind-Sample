@@ -1,5 +1,5 @@
 ﻿define(['services/logger',
-        'durandal/plugins/router',
+        'plugins/router',
         'services/dataContext'],
 function (logger, router, dataContext) {
     var vm = {
@@ -30,7 +30,7 @@ function (logger, router, dataContext) {
 
     function gotoOrder(order) {
         var url = '#/order/' + order.OrderID;
-        router.navigateTo(url);
+        router.navigate(url);
         return false;
     }
 

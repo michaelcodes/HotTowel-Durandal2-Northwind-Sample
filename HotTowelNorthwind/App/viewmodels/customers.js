@@ -1,4 +1,4 @@
-﻿define(['services/logger', 'durandal/plugins/router', 'services/dataContext'],
+﻿define(['services/logger', 'plugins/router', 'services/dataContext'],
 function (logger, router, dataContext) {
     var vm = {
         activate: activate,
@@ -28,7 +28,7 @@ function (logger, router, dataContext) {
 
     function gotoCustomer(customer) {
         var url = '#/customerDetail/' + customer.CustomerID();
-        router.navigateTo(url);
+        router.navigate(url);
         return false;
     }
     

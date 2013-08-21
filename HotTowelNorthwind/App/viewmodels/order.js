@@ -1,5 +1,5 @@
 ﻿define(['services/logger',
-        'durandal/plugins/router',
+        'plugins/router',
         'services/dataContext'],
 function (logger, router, dataContext) {
     var isSaving = ko.observable(false);

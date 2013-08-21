@@ -1,4 +1,4 @@
-﻿define(['durandal/system', 'durandal/plugins/router', 'services/logger'],
+﻿define(['durandal/system', 'plugins/router', 'services/logger'],
     function (system, router, logger) {
         var shell = {
             activate: activate,
@@ -13,40 +13,17 @@
         }
 
         function boot() {
-            router.mapNav('home');
-            router.mapNav('details');
-            router.mapNav('customers');
-            router.mapNav('orders');
-            router.mapRoute('customerDetail/:id');
-            router.mapRoute('order/:id');
-            //var routes = [{
-            //    url: 'home',
-            //    moduleId: 'viewmodels/home',
-            //    name: 'Home',
-            //    visible: true,
-            //    caption: 'Home',
-            //}, {
-            //    url: 'details',
-            //    moduleId: 'viewmodels/details',
-            //    name: 'Details',
-            //    caption: 'Details',
-            //    visible: true,
-            //}, {
-            //    url: 'customers',
-            //    moduleId: 'viewmodels/customers',
-            //    name: 'Customers',
-            //    caption: 'Customers',
-            //    visible: true
-            //}, {
-            //    url: 'customerDetail/:id',
-            //    moduleId: 'viewmodels/customerDetail',
-            //    name: 'Customer Detail',
-            //    visible: false,
-            //    caption: 'Customer Detail',
-            //}];
-            //router.map(routes);
+            router.map([
+                { route: '', title: 'Home', moduleId: 'viewmodels/home', nav: true },
+                { route: 'details', moduleId: 'viewmodels/details', nav: true },
+                { route: 'customers', moduleId: 'viewmodels/customers', nav: true },
+                { route: 'customerDetail/:id', moduleId: 'viewmodels/customerDetail', nav: false },
+                { route: 'orders', moduleId: 'viewmodels/orders', nav: true },
+                { route: 'order/:id', moduleId: 'viewmodels/order', nav: false }
+            ]).buildNavigationModel();
+
             log('Hot Towel SPA Loaded!', null, true);
-            return router.activate('home');
+            return router.activate();
         }
 
         function log(msg, data, showToast) {

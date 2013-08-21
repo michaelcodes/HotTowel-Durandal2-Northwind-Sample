@@ -9,7 +9,7 @@
                 from("Customers");
 
             return manager
-                .executeQuery(query)
+                .executeQuery(query);
            
         };
 
@@ -23,10 +23,10 @@
                 .from("Orders")
                 .select("OrderID, OrderDate, Customer.CompanyName")
                 .orderBy("OrderID desc")
-                .take(100)
+                .take(100);
 
             return manager
-                .executeQuery(query)
+                .executeQuery(query);
 
         };
 

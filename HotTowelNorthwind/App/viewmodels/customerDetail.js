@@ -1,5 +1,5 @@
 ﻿define(['services/logger',
-        'durandal/plugins/router',
+        'plugins/router',
         'services/dataContext'],
 function (logger, router, dataContext) {
     var isSaving = ko.observable(false);
@@ -117,12 +117,15 @@ function (logger, router, dataContext) {
 
     function activate(routeData) {
         logger.log('Customer Detail View Activated', null, 'customerDetail', true);
-
-        return dataContext.getCustomerById(routeData.id)
-                .then(function (data) {
-                    vm.customer(data.entity);
-                })
-                .fail(queryFailed);
+dataContext.getCustomerById(routeData.id);
+        return true;
+        //vm.customer({});
+            //= 
+        //return dataContext.getCustomerById(routeData.id)
+        //        .then(function (data) {
+        //            vm.customer(data.entity);
+        //        })
+        //        .fail(queryFailed);
     }
 
 

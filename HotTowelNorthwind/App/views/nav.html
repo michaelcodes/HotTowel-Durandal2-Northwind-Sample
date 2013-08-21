@@ -1,8 +1,8 @@
 ﻿<nav class="navbar navbar-static-top">
     <div class="navbar-inner">
-        <ul class="nav" data-bind="foreach: router.visibleRoutes">
+        <ul class="nav" data-bind="foreach: router.navigationModel">
             <li data-bind="css: { active: isActive }">
-                <a data-bind="attr: { href: hash }, text: name" href="#"></a>
+                <a data-bind="attr: { href: hash }, text: title" href="#"></a>
             </li>
         </ul>
         <div data-bind="css: { active: router.isNavigating }" 
