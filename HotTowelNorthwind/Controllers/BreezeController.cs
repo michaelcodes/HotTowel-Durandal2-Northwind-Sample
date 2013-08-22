@@ -50,6 +50,13 @@ namespace HotTowelNorthwind.Controllers
         }
 
         [System.Web.Http.HttpGet]
+        public IQueryable<Product> Products()
+        {
+            //System.Threading.Thread.Sleep(500);
+            return _contextProvider.Context.Products;
+        }
+
+        [System.Web.Http.HttpGet]
         public IQueryable<Customer> Customers()
         {
             //System.Threading.Thread.Sleep(500);

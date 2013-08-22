@@ -83,16 +83,20 @@ function (logger, router, dataContext) {
         }
     };
 
+
+
     var vm = {
         activate: activate,
         title: 'order',
         order: ko.observable(),
+        productsLookup: ko.observableArray(),
         canSave: canSave,
         hasChanges: hasChanges,
         goBack: goBack,
         save: save,
         cancel: cancel,
         deleteOrder: deleteOrder,
+        addOrderLine: addOrderLine
     };
 
 
@@ -118,11 +122,16 @@ function (logger, router, dataContext) {
     function activate(id) {
         logger.log('Order Detail View Activated', null, 'orderDetail', true);
 
-        return dataContext.getOrderById(parseInt(id), vm.order)
+        var getOrder = dataContext.getOrderById(parseInt(id), vm.order);
+        var getProductLookup = dataContext.getProductLookup(vm.productsLookup);
+        return Q.all([getProductLookup, getOrder]);
                 
     }
 
-
+    function addOrderLine() {
+        //vm.order().OrderDetails.push(dataContext.addOrderLine(vm.order().OrderID()));
+        dataContext.addOrderLine(vm.order().OrderID());
+    };
 
     function continueExecution(data) {
 

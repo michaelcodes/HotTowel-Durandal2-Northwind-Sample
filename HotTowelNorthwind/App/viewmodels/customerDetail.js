@@ -117,15 +117,15 @@ function (logger, router, dataContext) {
 
     function activate(id) {
         logger.log('Customer Detail View Activated', null, 'customerDetail', true);
-dataContext.getCustomerById(id);
-        return true;
+        //dataContext.getCustomerById(id);
+
         //vm.customer({});
-            //= 
-        //return dataContext.getCustomerById(routeData.id)
-        //        .then(function (data) {
-        //            vm.customer(data.entity);
-        //        })
-        //        .fail(queryFailed);
+        //    = 
+        return dataContext.getCustomerById(id)
+                .then(function (data) {
+                    vm.customer(data.entity);
+                })
+                .fail(queryFailed);
     }
 
 

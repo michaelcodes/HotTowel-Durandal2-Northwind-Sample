@@ -41,7 +41,7 @@
             <tbody data-bind="foreach: order().OrderDetails">
                 <tr>
                     <td>
-                        <input type="text" data-bind="value: Product().ProductName" />
+                        <select data-bind="options: $root.productsLookup, optionsText: 'ProductName', optionsValue: 'ProductID', value: ProductID, optionsCaption: 'Choose...'"></select>
                     </td>
                     <td>
                         <input type="text" data-bind="value: UnitPrice" />
@@ -55,5 +55,6 @@
                 </tr>
             </tbody>
         </table>
+        <button data-bind='click: addOrderLine'>Add Line</button>
     </div>
 </div>

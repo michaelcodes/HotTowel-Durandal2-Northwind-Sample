@@ -13,6 +13,18 @@
            
         };
 
+        var getProductLookup = function (productsLookup) {
+            var query = breeze.EntityQuery
+                .from("Products")
+                .select("ProductID, ProductName, UnitPrice")
+                .orderBy("ProductName");
+
+            return manager
+                .executeQuery(query).then(function (data) {
+                    productsLookup(data.results);
+                });
+        }
+
         var getCustomerById = function (id) {
             return manager
                 .fetchEntityByKey("Customer", id, true);
@@ -44,9 +56,13 @@
       
         };
 
+        var addOrderLine = function (orderId) {
+            return manager.createEntity('OrderDetail', { OrderID: orderId, ProductID: 1 });
+        }
+
         var cancelChanges = function () {
             manager.rejectChanges();
-            log('Canceled changes', null, true);
+            logger.log('Canceled changes', null, true);
         };
 
         var saveChanges = function () {
@@ -55,12 +71,12 @@
                 .fail(saveFailed);
 
             function saveSucceeded(saveResult) {
-                log('Saved data successfully', saveResult, true);
+                logger.log('Saved data successfully', saveResult, true);
             }
 
             function saveFailed(error) {
                 var msg = 'Save failed: ' + getErrorMessages(error);
-                logError(msg, error);
+                //logError(msg, error);
                 error.message = msg;
                 throw error;
             }
@@ -78,6 +94,8 @@
             getCustomerById: getCustomerById,
             getOrders: getOrders,
             getOrderById: getOrderById,
+            getProductLookup: getProductLookup,
+            addOrderLine: addOrderLine,
             saveChanges: saveChanges,
             cancelChanges: cancelChanges,
             hasChanges: hasChanges
