@@ -28,29 +28,34 @@
         <input type="text" data-bind="value: ShipCountry" />
     </div>
     <div class="row-fluid">
-        <table class="table">
+        <table class="table table-condensed">
             <thead>
                 <tr>
-                    <td>Product</td>
-                    <td>Price</td>
-                    <td>Quantity</td>
-                    <td>Discount</td>
-                    <td>Total</td>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Discount</th>
+                    <th>Total</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody data-bind="foreach: order().OrderDetails">
                 <tr>
-                    <td>
+                    <td style="padding-left:0;">
                         <select data-bind="options: $root.productsLookup, optionsText: 'ProductName', optionsValue: 'ProductID', value: ProductID, optionsCaption: 'Choose...'"></select>
                     </td>
                     <td>
-                        <input type="text" data-bind="value: UnitPrice" />
+                        <input type="number" class="input-mini" data-bind="value: UnitPrice" />
                     </td>
                     <td>
-                        <input type="text" data-bind="value: Quantity" />
+                        <input type="text" class="input-mini" data-bind="value: Quantity" />
                     </td>
                     <td>
-                        <input type="text" data-bind="value: Discount" />
+                        <input type="text" class="input-mini" data-bind="value: Discount" />
+                    </td>
+                    <td></td>
+                    <td>
+                        <a class="btn btn-sm" href="#"><i class="icon-remove icon-red"></i></a>
                     </td>
                 </tr>
             </tbody>
