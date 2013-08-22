@@ -57,7 +57,7 @@
         };
 
         var addOrderLine = function (orderId) {
-            return manager.createEntity('OrderDetail', { OrderID: orderId, ProductID: 1 });
+            return manager.createEntity('OrderDetail', { OrderID: orderId });
         }
 
         var cancelChanges = function () {

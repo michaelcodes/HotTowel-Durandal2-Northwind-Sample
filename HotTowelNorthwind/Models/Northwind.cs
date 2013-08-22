@@ -78,13 +78,15 @@ namespace HotTowelNorthwind.Models
     [Table("Order Details")]
     public class OrderDetail : IValidatableObject
     {
-        [Key, Column(Order = 1)]
+        //[Key, Column(Order = 1)]
         public int OrderID { get; set; }
-        [Key, Column(Order = 2)]
+        //[Key, Column(Order = 2)]
         public int ProductID { get; set; }
         public decimal UnitPrice { get; set; }
         public short Quantity { get; set; }
         public float Discount { get; set; }
+        [Key]
+        public int OrderDetailsID { get; set; }
         public Order Orders { get; set; }
         [ForeignKey("ProductID")]
         public virtual Product Product { get; set; }
