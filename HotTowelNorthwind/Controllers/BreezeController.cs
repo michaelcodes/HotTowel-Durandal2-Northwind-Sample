@@ -17,6 +17,13 @@ namespace HotTowelNorthwind.Controllers
         readonly EFContextProvider<NorthwindContext> _contextProvider =
             new EFContextProvider<NorthwindContext>();
 
+        private static JsonSerializer CreateJsonSerializer()
+        {
+            var serializerSettings = BreezeConfig.Instance.GetJsonSerializerSettings();
+            var jsonSerializer = JsonSerializer.Create(serializerSettings);
+            return jsonSerializer;
+        }
+
         [System.Web.Http.HttpGet]
         public string Metadata()
         {
@@ -27,68 +34,26 @@ namespace HotTowelNorthwind.Controllers
         public SaveResult SaveChanges(JObject saveBundle)
         {
             SaveResult saveResult = _contextProvider.SaveChanges(saveBundle);
-            #region Additionnal
-            //foreach (object savedEntity in saveResult.Entities)
-            //{
-            //    if (savedEntity is Restaurant)
-            //    {
-            //        RestaurantsHub.RestaurantUpdated((Restaurant)savedEntity);
-            //    }
-            //    else if (savedEntity is MenuItem)
-            //    {
-            //    }
-            //}
-            #endregion
             return saveResult;
-        }
-
-        private static JsonSerializer CreateJsonSerializer()
-        {
-            var serializerSettings = BreezeConfig.Instance.GetJsonSerializerSettings();
-            var jsonSerializer = JsonSerializer.Create(serializerSettings);
-            return jsonSerializer;
         }
 
         [System.Web.Http.HttpGet]
         public IQueryable<Product> Products()
         {
-            //System.Threading.Thread.Sleep(500);
             return _contextProvider.Context.Products;
         }
 
         [System.Web.Http.HttpGet]
         public IQueryable<Customer> Customers()
         {
-            //System.Threading.Thread.Sleep(500);
             return _contextProvider.Context.Customers;
         }
 
         [System.Web.Http.HttpGet]
         public IQueryable<Order> Orders()
         {
-            //System.Threading.Thread.Sleep(500);
             return _contextProvider.Context.Orders;
         }
 
-        //[System.Web.Http.HttpGet]
-        //public IQueryable<MenuItem> MenuItems()
-        //{
-        //    return _contextProvider.Context.MenuItems;
-        //}
-
-        //[System.Web.Http.HttpGet]
-        //public IQueryable<RestaurantBrief> RestaurantBriefs()
-        //{
-        //    return _contextProvider.Context.Restaurants.Select(
-        //            restaurant =>
-        //                new RestaurantBrief
-        //                {
-        //                    Id = restaurant.Id,
-        //                    Name = restaurant.Name,
-        //                    Description = restaurant.Description,
-        //                    Address = restaurant.Address
-        //                }
-        //        );
-        //}
     }
 }
