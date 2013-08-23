@@ -1,7 +1,8 @@
 ﻿define(['services/logger',
         'plugins/router',
-        'services/dataContext'],
-function (logger, router, dataContext) {
+        'services/dataContext',
+        'plugins/dialog'],
+function (logger, router, dataContext, dialog) {
     var isSaving = ko.observable(false);
     var isDeleting = ko.observable(false);
 
@@ -85,6 +86,25 @@ function (logger, router, dataContext) {
 
 
 
+
+    //test
+    var TestBox = function (message, title, options) {
+        this.message = message;
+        this.title = title || TestBox.defaultTitle;
+        this.options = options || TestBox.defaultOptions;
+    };
+
+    TestBox.prototype.selectOption = function (dialogResult) {
+        dialog.close(this, dialogResult);
+    };
+
+    
+
+
+
+
+
+
     var vm = {
         activate: activate,
         title: 'order',
@@ -97,7 +117,8 @@ function (logger, router, dataContext) {
         cancel: cancel,
         deleteOrder: deleteOrder,
         addOrderLine: addOrderLine,
-        testvalue: ko.observable(4500.10).money()
+        testvalue: ko.observable(4500.10).money(),
+        editShipAddress: editShipAddress
     };
 
 
@@ -119,6 +140,10 @@ function (logger, router, dataContext) {
     return vm;
 
     //#region Internal Methods
+
+    function editShipAddress() {
+        return dialog.show(new TestBox("test", "test", {}));
+    }
 
     function activate(id) {
         logger.log('Order Detail View Activated', null, 'orderDetail', true);

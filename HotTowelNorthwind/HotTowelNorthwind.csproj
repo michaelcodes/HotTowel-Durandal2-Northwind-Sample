@@ -195,6 +195,7 @@
     <Content Include="App\utils\knockoutExtenders.js" />
     <Content Include="App\viewmodels\order.js" />
     <Content Include="App\viewmodels\orders.js" />
+    <Content Include="App\views\testBox.html" />
     <Content Include="App\views\order.html" />
     <Content Include="App\views\orders.html" />
     <Content Include="App_Data\Northwind.MDF" />
