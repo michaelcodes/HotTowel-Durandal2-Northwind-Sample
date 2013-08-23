@@ -1,8 +1,9 @@
-﻿define(['services/logger'],
-    function (logger) {
+﻿define(['services/logger', 'services/modelExtensions'],
+    function (logger, modelExtensions) {
         var EntityQuery = breeze.EntityQuery;
         var manager = new breeze.EntityManager('breeze/Breeze');
-  
+
+        modelExtensions.registerModelExtensions(manager);
 
         var getCustomers = function () {
             var query = breeze.EntityQuery.
@@ -46,7 +47,7 @@
             var query = breeze.EntityQuery
                 .from("Orders")
                 .where("OrderID", "==", id)
-                .expand("OrderDetails, OrderDetails.Product");
+                .expand("OrderDetails, OrderDetails.Product, Customer");
 
             return manager
                 .executeQuery(query)

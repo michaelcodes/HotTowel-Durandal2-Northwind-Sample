@@ -1,36 +1,66 @@
 ﻿<div class="container-fluid">
-    <div class="form-actions">
-        <button class="btn btn-inverse"
-            data-bind="click: goBack"><i class="icon-hand-left icon-white"></i> Back</button>
-        <button class="btn btn-inverse"
-            data-bind="click: cancel, enable: canSave"><i class="icon-undo icon-white"></i> Cancel</button>
-        <button class="btn btn-primary"
-            data-bind="click: save, enable: canSave"><i class="icon-save icon-white"></i> Save</button>
+<!--    <div class="row-fluid" data-bind="with: order">
+        <h4 class="span6 text-right"><i>#</i><i data-bind="text: OrderID"></i></h4>
+    </div>-->
+    <div class="row-fluid">
+        <div class="form-actions">
+            <button class="btn btn-inverse"
+                data-bind="click: goBack"><i class="icon-hand-left icon-white"></i> Back</button>
+            <button class="btn btn-inverse"
+                data-bind="click: cancel, enable: canSave"><i class="icon-undo icon-white"></i> Cancel</button>
+            <button class="btn btn-primary"
+                data-bind="click: save, enable: canSave"><i class="icon-save icon-white"></i> Save</button>
         
-        <i class="icon-asterisk icon-red" data-bind="visible: hasChanges"></i>
+            <i class="icon-asterisk icon-red" data-bind="visible: hasChanges"></i>
         
-        <button class="btn btn-danger pull-right"
-            data-bind="click: deleteOrder, disable: hasChanges"><i class="icon-trash icon-white"></i> Delete
-        </button>
+            <button class="btn btn-danger pull-right"
+                data-bind="click: deleteOrder, disable: hasChanges"><i class="icon-trash icon-white"></i> Delete
+            </button>
+        </div>
     </div>
-
     <div class="row-fluid" data-bind="with: order">
-        <input type="text" data-bind="value: OrderID" />
-        <input type="text" data-bind="value: OrderDate" />
-        <input type="text" data-bind="value: RequiredDate" />
-        <input type="text" data-bind="value: ShippedDate" />
-        <input type="text" data-bind="value: Freight" />
-        <input type="text" data-bind="value: ShipName" />
-        <input type="text" data-bind="value: ShipAddress" />
-        <input type="text" data-bind="value: ShipCity" />
-        <input type="text" data-bind="value: ShipRegion" />
-        <input type="text" data-bind="value: ShipPostalCode" />
-        <input type="text" data-bind="value: ShipCountry" />
+   
+            
+        <div class="span12 well">
+            <fieldset class="span3">
+                <legend class="muted">
+                    Billing Address 
+                    <button class="btn btn-inverse btn-mini">Edit</button>
+                </legend>
+                <strong data-bind="text: ShipName"></strong><br />
+                <span data-bind="text: ShipAddress"></span><br />
+                <span data-bind="text: ShipCity"></span>, <span data-bind="    text: ShipRegion"></span> <span data-bind="    text: ShipPostalCode"></span><br />
+                <span data-bind="text: ShipCountry"></span><br />
+            </fieldset>
+            <fieldset class="span3">
+                <legend class="muted">Shipping Address <button class="btn btn-inverse btn-mini">Edit</button></legend>
+                <strong data-bind="text:ShipName"></strong><br />
+                <span data-bind="text: ShipAddress"></span><br />
+                <span data-bind="text: ShipCity"></span>, <span data-bind="    text: ShipRegion"></span> <span data-bind="    text: ShipPostalCode"></span><br />
+                <span data-bind="text: ShipCountry"></span><br />
+            </fieldset>
+            <div class="span6">
+                <label>Order Date</label>
+                <input type="text" data-bind="value: OrderDate" />
+                <label>Required Date</label>
+                <input type="text" data-bind="value: RequiredDate" />
+                <label>Freight</label>
+                <input type="text" data-bind="value: Freight" />
+            </div></div>
+<!--            <input type="text" data-bind="value: ShipName" />
+            <input type="text" data-bind="value: ShipAddress" />
+            <input type="text" data-bind="value: ShipCity" />
+            <input type="text" data-bind="value: ShipRegion" />
+            <input type="text" data-bind="value: ShipPostalCode" />
+            <input type="text" data-bind="value: ShipCountry" />-->
+        
+        
+        
     </div>
     <div class="row-fluid">
-        <table class="table table-condensed">
+        <table class="table table-bordered table-edit table-striped">
             <thead>
-                <tr>
+                <tr class="info">
                     <th>Product</th>
                     <th>Price</th>
                     <th>Quantity</th>
@@ -41,25 +71,25 @@
             </thead>
             <tbody data-bind="foreach: order().OrderDetails">
                 <tr>
-                    <td style="padding-left:0;">
-                        <select data-bind="options: $root.productsLookup, optionsText: 'ProductName', optionsValue: 'ProductID', value: ProductID, optionsCaption: 'Choose...'"></select>
+                    <td>
+                        <select class="input-xlarge" data-bind="options: $root.productsLookup, optionsText: 'ProductName', optionsValue: 'ProductID', value: ProductID, optionsCaption: 'Choose...'"></select>
                     </td>
                     <td>
-                        <input type="number" class="input-mini" data-bind="value: UnitPrice" />
+                        <input type="text" class="input-mini text-right" data-bind="value: UnitPrice" />
                     </td>
                     <td>
-                        <input type="text" class="input-mini" data-bind="value: Quantity" />
+                        <input type="text" class="input-mini text-right" data-bind="value: Quantity" />
                     </td>
                     <td>
-                        <input type="text" class="input-mini" data-bind="value: Discount" />
+                        <input type="text" class="input-mini text-right" data-bind="value: Discount" />
                     </td>
-                    <td></td>
+                    <td><div class="text-right" data-bind="text: rowtotal.formatted"></div></td>
                     <td>
-                        <a class="btn btn-sm" href="#"><i class="icon-remove icon-red"></i></a>
+                        <a class="btn btn-sm pull-right" href="#"><i class="icon-remove icon-red icon-large"></i></a>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <button class="btn btn-primary" data-bind='click: addOrderLine'><i class="icon-plus icon-white"></i> Add Line</button>
+        <button class="btn btn-success" data-bind='click: addOrderLine'><i class="icon-plus icon-white"></i> Add Line</button>
     </div>
 </div>

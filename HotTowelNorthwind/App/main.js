@@ -10,13 +10,15 @@
 define('jquery', function () { return jQuery; });
 define('knockout', ko);
 
-define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'services/logger'],
-    function (system, app, viewLocator, logger) {
+
+define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'services/logger', 'utils/knockoutExtenders'],
+    function (system, app, viewLocator, logger, knockoutExtenders) {
 
     // Enable debug message to show in the console 
     //>>excludeStart("build", true);
     system.debug(true);
     //>>excludeEnd("build");
+    knockoutExtenders.registerExtenders();
 
     app.configurePlugins({
         router: true,
@@ -34,7 +36,6 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'services/log
 
         // When finding a viewmodel module, replace the viewmodel string 
         // with view to find it partner view.
-        //router.useConvention();
         viewLocator.useConvention();
         
         // Adapt to touch devices

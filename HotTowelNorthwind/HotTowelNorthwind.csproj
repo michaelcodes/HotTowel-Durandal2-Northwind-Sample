@@ -191,6 +191,8 @@
     <Content Include="App\main.js" />
     <Content Include="App\services\dataContext.js" />
     <Content Include="App\services\logger.js" />
+    <Content Include="App\services\modelExtensions.js" />
+    <Content Include="App\utils\knockoutExtenders.js" />
     <Content Include="App\viewmodels\order.js" />
     <Content Include="App\viewmodels\orders.js" />
     <Content Include="App\views\order.html" />

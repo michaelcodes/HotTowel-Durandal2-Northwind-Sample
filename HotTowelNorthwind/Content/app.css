@@ -6,8 +6,8 @@ b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, c
 thead, tr, th, td, article, aside, canvas,  details, figcaption, figure, footer, header, hgroup, menu,
 nav, section, summary, time, mark, audio, video
 {
-    font: inherit;
-    /*margin: 0;*/
+    /*font: inherit;
+    margin: 0;*/
 }
 
 /* #endregion */
@@ -198,6 +198,20 @@ footer span {
 .icon-red
 {
 	color: #bd362f;
+}
+
+table.table-bordered thead tr th {
+    background-color: #1f1f1f;
+    color: white;
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #8399a7;
+}
+
+.table-edit input[type="text"], .table-edit select {
+
+    margin-bottom: 0;
 }
 
 /* End Boostrap overrides  */

@@ -96,7 +96,8 @@ function (logger, router, dataContext) {
         save: save,
         cancel: cancel,
         deleteOrder: deleteOrder,
-        addOrderLine: addOrderLine
+        addOrderLine: addOrderLine,
+        testvalue: ko.observable(4500.10).money()
     };
 
 
