@@ -10,9 +10,18 @@
                 function () {
                     return orderDetail.UnitPrice() * parseInt("0" + orderDetail.Quantity(), 10);
                 }).money();
-        };
+        }
+
+        var orderInitializer = function (order) {
+            order.grandtotal = ko.computed(function () {
+                var total = 0;
+                $.each(order.OrderDetails(), function () { total += this.rowtotal() });
+                return total;
+            }).money();
+        }
 
         store.registerEntityTypeCtor("OrderDetail", null, orderDetailInitializer);
+        store.registerEntityTypeCtor("Order", null, orderInitializer);
     }
     
 });

@@ -89,6 +89,21 @@
                     </td>
                 </tr>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4">
+                        <div class="text-right muted">
+                            <strong>Grand Total: </strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="text-right">
+                            <strong data-bind="text: order().grandtotal.formatted"></strong>
+                        </div>
+                    </td>
+                    <td></td>
+                </tr>
+            </tfoot>
         </table>
         <button class="btn btn-success" data-bind='click: addOrderLine'><i class="icon-plus icon-white"></i> Add Line</button>
     </div>
