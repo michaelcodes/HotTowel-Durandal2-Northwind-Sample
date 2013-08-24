@@ -7,6 +7,7 @@ using System.Data.Objects;
 using System.Data.Entity.Infrastructure;
 using System.ComponentModel.DataAnnotations.Schema;
 
+
 namespace HotTowelNorthwind.Models
 {
     public class NorthwindContext : DbContext
@@ -17,6 +18,7 @@ namespace HotTowelNorthwind.Models
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Product> Products { get; set; }
+
     }
 
     [Table("Customers")]
@@ -37,31 +39,18 @@ namespace HotTowelNorthwind.Models
     }
 
     [Table("Order Details")]
-    public class OrderDetail : IValidatableObject
+    public class OrderDetail
     {
         [Key]
         public int OrderDetailsID { get; set; }
-        //[Key, Column(Order = 1)]
-        public int OrderID { get; set; }
-        //[Key, Column(Order = 2)]
+        public int? OrderID { get; set; }
         public int ProductID { get; set; }
         public decimal UnitPrice { get; set; }
         public short Quantity { get; set; }
-        public float Discount { get; set; }
-        public Order Orders { get; set; }
+        [ForeignKey("OrderID")]
+        public Order Order { get; set; }
         [ForeignKey("ProductID")]
         public virtual Product Product { get; set; }
-
-        // Validate for the Discount property.
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-
-            if (Discount < 0 || Discount > 1)
-            {
-                yield return new ValidationResult
-                 ("Discount must be a value between zero and one", new[] { "Discount" });
-            }
-        }
     }
 
     [Table("Orders")]

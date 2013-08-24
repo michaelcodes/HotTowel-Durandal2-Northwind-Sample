@@ -83,6 +83,16 @@
             }
         };
 
+        var deleteOrder = function (order) {
+            $.each(order.OrderDetails(), function (index, orderDetail) {
+                if (orderDetail) {
+                    orderDetail.entityAspect.setDeleted();
+                }
+            });
+            order.entityAspect.setDeleted();
+            return saveChanges();
+        };
+
         var hasChanges = ko.observable(false);
 
         manager.hasChangesChanged.subscribe(function (eventArgs) {
@@ -99,6 +109,7 @@
             addOrderLine: addOrderLine,
             saveChanges: saveChanges,
             cancelChanges: cancelChanges,
-            hasChanges: hasChanges
+            hasChanges: hasChanges,
+            deleteOrder: deleteOrder,
         };
     });
