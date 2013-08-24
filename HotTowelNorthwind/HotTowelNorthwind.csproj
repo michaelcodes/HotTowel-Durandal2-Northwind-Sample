@@ -184,9 +184,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Northwind.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Models\Northwind.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
