@@ -20,6 +20,8 @@ namespace HotTowelNorthwind
                 .Include("~/scripts/breeze.debug.js")
                 .Include("~/scripts/bootstrap.js")
                 .Include("~/scripts/moment.js")
+                .Include("~/scripts/jquery-ui-1.10.3.js")
+                .Include("~/scripts/knockout-jqueryui.min.js")
               );
 
             bundles.Add(
@@ -31,7 +33,8 @@ namespace HotTowelNorthwind
                 .Include("~/Content/toastr.css")
                 .Include("~/Content/app.css")
                 .Include("~/Content/font-awesome.css")
-                .Include("~/Content/custom.css")
+                .Include("~/Content/themse/base/jquery-ui.css")
+                .Include("~/Content/themes/base/jquery.ui.all.css")
               );
         }
 

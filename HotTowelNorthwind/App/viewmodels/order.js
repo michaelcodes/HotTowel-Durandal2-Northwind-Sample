@@ -6,6 +6,88 @@ function (logger, router, dataContext, dialog) {
     var isSaving = ko.observable(false);
     var isDeleting = ko.observable(false);
 
+
+
+
+    var vm = {
+        activate: activate,
+        title: 'order',
+        order: ko.observable(),
+        productsLookup: ko.observableArray(),
+        canSave: canSave,
+        hasChanges: hasChanges,
+        goBack: goBack,
+        save: save,
+        cancel: cancel,
+        deleteOrder: deleteOrder,
+        addOrderLine: addOrderLine,
+        testvalue: ko.observable(4500.10).money(),
+        editBillAddress: editBillAddress,
+        editShipAddress: editShipAddress,
+        deleteOrderLine: deleteOrderLine
+    };
+
+
+    return vm;
+
+    //#region Internal Methods
+
+    function editBillAddress(customer) {
+        var dialogModel = {
+            customer: customer,
+            viewUrl: 'views/billingaddress'
+        }
+        dialogModel.closeDialog = function () {
+            dialog.close(this);
+        };
+        dialog.show(dialogModel);
+    }
+
+    function editShipAddress(selectedorder) {
+        var dialogModel = {
+            order: selectedorder,
+            viewUrl: 'views/shippingaddress'
+        }
+        dialogModel.closeDialog = function () {
+            dialog.close(this);
+        };
+        dialog.show(dialogModel);
+    }
+
+    function activate(id) {
+        logger.log('Order Detail View Activated', null, 'orderDetail', true);
+
+        var getOrder = dataContext.getOrderById(parseInt(id), vm.order);
+        var getProductLookup = dataContext.getProductLookup(vm.productsLookup);
+        return Q.all([getProductLookup, getOrder]);
+                
+    }
+
+    function addOrderLine() {
+        dataContext.addOrderLine(vm.order().OrderID());
+    };
+
+    function queryFailed(error) {
+        toastr.error("Query failed: " + error.message);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     var goBack = function () {
         router.navigateBack();
     };
@@ -84,76 +166,9 @@ function (logger, router, dataContext, dialog) {
         }
     };
 
-
-
-
-    var vm = {
-        activate: activate,
-        title: 'order',
-        order: ko.observable(),
-        productsLookup: ko.observableArray(),
-        canSave: canSave,
-        hasChanges: hasChanges,
-        goBack: goBack,
-        save: save,
-        cancel: cancel,
-        deleteOrder: deleteOrder,
-        addOrderLine: addOrderLine,
-        testvalue: ko.observable(4500.10).money(),
-        editBillAddress: editBillAddress,
-        editShipAddress: editShipAddress,
+    var deleteOrderLine = function (orderDetail) {
+        orderDetail.entityAspect.setDeleted();
     };
-
-
-    return vm;
-
-    //#region Internal Methods
-    function editBillAddress(customer) {
-        var dialogModel = {
-            customer: customer,
-            viewUrl: 'views/billingaddress'
-        }
-        dialogModel.closeDialog = function () {
-            dialog.close(this);
-        };
-        dialog.show(dialogModel);
-    }
-    function editShipAddress(selectedorder) {
-        var dialogModel = {
-            order: selectedorder,
-            viewUrl: 'views/shippingaddress'
-        }
-        dialogModel.closeDialog = function () {
-            dialog.close(this);
-        };
-        dialog.show(dialogModel);
-    }
-
-
-
-    function activate(id) {
-        logger.log('Order Detail View Activated', null, 'orderDetail', true);
-
-        var getOrder = dataContext.getOrderById(parseInt(id), vm.order);
-        var getProductLookup = dataContext.getProductLookup(vm.productsLookup);
-        return Q.all([getProductLookup, getOrder]);
-                
-    }
-
-    function addOrderLine() {
-        //vm.order().OrderDetails.push(dataContext.addOrderLine(vm.order().OrderID()));
-        dataContext.addOrderLine(vm.order().OrderID());
-    };
-
-    function continueExecution(data) {
-
-    }
-
-    function queryFailed(error) {
-        toastr.error("Query failed: " + error.message);
-    }
-
-
     //#endregion
 
 
