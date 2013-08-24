@@ -1,0 +1,67 @@
+﻿<div class="messageBox autoclose" style="max-width: 425px">
+	<div class="modal-header text-center">
+		<h3>Edit Billing Address</h3>
+	</div>
+
+	<div class="modal-body" data-bind="with: customer">
+		<form class="form-horizontal " accept-charset="utf-8">
+			<div class="control-group">
+				<label class="control-label">	
+					Billing Name
+				</label>
+				<div class="controls">
+					<input type="text" data-bind="value: CompanyName">
+				</div>
+			</div>
+ 
+			<div class="control-group">
+				<label class="control-label">	
+					Street Address
+				</label>
+				<div class="controls">
+					<input placeholder="Street Name and/or apartment number" type="text" data-bind="value: Address">
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">	
+					City
+				</label>
+				<div class="controls">
+					<input placeholder="" type="text" data-bind="value: City">
+				</div>
+			</div>
+ 
+			<div class="control-group">
+				<label class="control-label">	
+					Zip Code
+				</label>
+				<div class="controls"><input type="text" data-bind="value: PostalCode">
+				</div>
+			</div>
+ 
+			<div class="control-group">
+				<label class="control-label">	
+					State/Region
+				</label>
+				<div class="controls"><input type="text" data-bind="value: Region">
+				</div>
+			</div>
+			
+			<div class="control-group">
+				<label for="country" class="control-label">	
+					Country
+				</label>
+				<div class="controls">
+					<input type="text" data-bind="value: Country" />
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div class="modal-footer text-center">
+		<div class="text-center">
+			<button class="btn btn-primary" data-bind="click: closeDialog">Close</button>
+		</div>
+	</div>
+</div>

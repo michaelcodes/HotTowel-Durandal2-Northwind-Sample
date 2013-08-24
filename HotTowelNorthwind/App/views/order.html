@@ -18,21 +18,24 @@
     </div>
     <div class="row-fluid" data-bind="with: order">
         <div class="span12 well">   
-            <fieldset class="span3">
+            <fieldset class="span3" data-bind="with: Customer">
                 <legend class="muted">
                     Billing Address 
-                    <button class="btn btn-inverse btn-mini">Edit</button>
+                    <button class="btn btn-inverse btn-mini" data-bind="click: $root.editBillAddress">Edit</button>
                 </legend>
-                <strong data-bind="text: ShipName"></strong><br />
-                <span data-bind="text: ShipAddress"></span><br />
-                <span data-bind="text: ShipCity"></span>, <span data-bind="    text: ShipRegion"></span> <span data-bind="    text: ShipPostalCode"></span><br />
-                <span data-bind="text: ShipCountry"></span><br />
+                <strong data-bind="text: CompanyName"></strong><br />
+                <span data-bind="text: Address"></span><br />
+                <span data-bind="text: City"></span>, <span data-bind="text: Region"></span> <span data-bind="text: PostalCode"></span><br />
+                <span data-bind="text: Country"></span><br />
             </fieldset>
             <fieldset class="span3">
-                <legend class="muted">Shipping Address <button class="btn btn-inverse btn-mini" data-bind="click: $parent.editShipAddress">Edit</button></legend>
+                <legend class="muted">
+                    Shipping Address 
+                    <button class="btn btn-inverse btn-mini" data-bind="click: $parent.editShipAddress">Edit</button>
+                </legend>
                 <strong data-bind="text:ShipName"></strong><br />
                 <span data-bind="text: ShipAddress"></span><br />
-                <span data-bind="text: ShipCity"></span>, <span data-bind="    text: ShipRegion"></span> <span data-bind="    text: ShipPostalCode"></span><br />
+                <span data-bind="text: ShipCity"></span>, <span data-bind="text: ShipRegion"></span> <span data-bind="text: ShipPostalCode"></span><br />
                 <span data-bind="text: ShipCountry"></span><br />
             </fieldset>
             <div class="span5">
@@ -43,7 +46,7 @@
                 <label>Freight</label>
                 <input type="text" data-bind="value: Freight" />
             </div>
-            <h4 class="span1"><i>#</i><i data-bind="text: OrderID"></i></h4>
+            <h4 class="span1 muted"><i>#</i><i data-bind="text: OrderID"></i></h4>
         </div>
     </div>
     <div class="row-fluid">

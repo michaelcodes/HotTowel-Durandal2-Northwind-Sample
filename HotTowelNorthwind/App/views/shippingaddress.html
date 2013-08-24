@@ -1,0 +1,67 @@
+﻿<div class="messageBox autoclose" style="max-width: 425px">
+	<div class="modal-header text-center">
+		<h3>Edit Shipping Address</h3>
+	</div>
+
+	<div class="modal-body" data-bind="with: order">
+		<form class="form-horizontal " accept-charset="utf-8">
+			<div class="control-group">
+				<label class="control-label">	
+					Shipping Name
+				</label>
+				<div class="controls">
+					<input type="text" data-bind="value: ShipName">
+				</div>
+			</div>
+ 
+			<div class="control-group">
+				<label class="control-label">	
+					Street Address
+				</label>
+				<div class="controls">
+					<input placeholder="Street Name and/or apartment number" type="text" data-bind="value: ShipAddress">
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">	
+					City
+				</label>
+				<div class="controls">
+					<input placeholder="" type="text" data-bind="value: ShipCity">
+				</div>
+			</div>
+ 
+			<div class="control-group">
+				<label class="control-label">	
+					Zip Code
+				</label>
+				<div class="controls"><input type="text" data-bind="value: ShipPostalCode">
+				</div>
+			</div>
+ 
+			<div class="control-group">
+				<label class="control-label">	
+					State/Region
+				</label>
+				<div class="controls"><input type="text" data-bind="value: ShipRegion">
+				</div>
+			</div>
+			
+			<div class="control-group">
+				<label for="country" class="control-label">	
+					Country
+				</label>
+				<div class="controls">
+					<input type="text" data-bind="value: ShipCountry" />
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div class="modal-footer text-center">
+		<div class="text-center">
+			<button class="btn btn-primary" data-bind="click: closeDialog">Close</button>
+		</div>
+	</div>
+</div>

@@ -87,24 +87,6 @@ function (logger, router, dataContext, dialog) {
 
 
 
-    //test
-    var TestBox = function (message, title, options) {
-        this.message = message;
-        this.title = title || TestBox.defaultTitle;
-        this.options = options || TestBox.defaultOptions;
-    };
-
-    TestBox.prototype.selectOption = function (dialogResult) {
-        dialog.close(this, dialogResult);
-    };
-
-    
-
-
-
-
-
-
     var vm = {
         activate: activate,
         title: 'order',
@@ -118,32 +100,36 @@ function (logger, router, dataContext, dialog) {
         deleteOrder: deleteOrder,
         addOrderLine: addOrderLine,
         testvalue: ko.observable(4500.10).money(),
-        editShipAddress: editShipAddress
+        editBillAddress: editBillAddress,
+        editShipAddress: editShipAddress,
     };
 
-
-    //var serviceName = 'breeze/Breeze';
-
-    //var manager = new breeze.EntityManager(serviceName);
-    //var store = manager.metadataStore;
-    //var order = function () {
-    //    this.FirstName = ko.observable('');
-    //    this.LastName = ko.observable('');
-    //    this.fullName = ko.computed(
-    //        function () {
-    //            return this.FirstName() + " " + this.LastName();
-    //        }, this);
-    //};
-
-    //store.registerEntityTypeCtor("order", order);
 
     return vm;
 
     //#region Internal Methods
-
-    function editShipAddress() {
-        return dialog.show(new TestBox("test", "test", {}));
+    function editBillAddress(customer) {
+        var dialogModel = {
+            customer: customer,
+            viewUrl: 'views/billingaddress'
+        }
+        dialogModel.closeDialog = function () {
+            dialog.close(this);
+        };
+        dialog.show(dialogModel);
     }
+    function editShipAddress(selectedorder) {
+        var dialogModel = {
+            order: selectedorder,
+            viewUrl: 'views/shippingaddress'
+        }
+        dialogModel.closeDialog = function () {
+            dialog.close(this);
+        };
+        dialog.show(dialogModel);
+    }
+
+
 
     function activate(id) {
         logger.log('Order Detail View Activated', null, 'orderDetail', true);

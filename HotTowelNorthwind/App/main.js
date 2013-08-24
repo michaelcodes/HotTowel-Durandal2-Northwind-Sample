@@ -38,8 +38,6 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'services/log
         // with view to find it partner view.
         viewLocator.useConvention();
         
-        // Adapt to touch devices
-        //app.adaptToDevice();
         //Show the app by setting the root view model for our application.
         app.setRoot('viewmodels/shell', 'entrance');
     });
