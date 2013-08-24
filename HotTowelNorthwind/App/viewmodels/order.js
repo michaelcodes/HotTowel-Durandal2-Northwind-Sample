@@ -1,38 +1,25 @@
 ﻿define(['services/logger',
         'plugins/router',
         'services/dataContext',
-        'plugins/dialog'],
-function (logger, router, dataContext, dialog) {
+        'plugins/dialog',
+        'durandal/app'],
+function (logger, router, dataContext, dialog, app) {
     var isSaving = ko.observable(false);
     var isDeleting = ko.observable(false);
 
+    var activate = function (id) {
+        logger.log('Order Detail View Activated', null, 'orderDetail', true);
 
+        var getOrder = dataContext.getOrderById(parseInt(id), vm.order);
+        var getProductLookup = dataContext.getProductLookup(vm.productsLookup);
+        return Q.all([getProductLookup, getOrder]);
 
-
-    var vm = {
-        activate: activate,
-        title: 'order',
-        order: ko.observable(),
-        productsLookup: ko.observableArray(),
-        canSave: canSave,
-        hasChanges: hasChanges,
-        goBack: goBack,
-        save: save,
-        cancel: cancel,
-        deleteOrder: deleteOrder,
-        addOrderLine: addOrderLine,
-        testvalue: ko.observable(4500.10).money(),
-        editBillAddress: editBillAddress,
-        editShipAddress: editShipAddress,
-        deleteOrderLine: deleteOrderLine
     };
 
 
-    return vm;
 
-    //#region Internal Methods
 
-    function editBillAddress(customer) {
+    var editBillAddress = function (customer) {
         var dialogModel = {
             customer: customer,
             viewUrl: 'views/billingaddress'
@@ -41,9 +28,9 @@ function (logger, router, dataContext, dialog) {
             dialog.close(this);
         };
         dialog.show(dialogModel);
-    }
+    };
 
-    function editShipAddress(selectedorder) {
+    var editShipAddress = function (selectedorder) {
         var dialogModel = {
             order: selectedorder,
             viewUrl: 'views/shippingaddress'
@@ -52,41 +39,11 @@ function (logger, router, dataContext, dialog) {
             dialog.close(this);
         };
         dialog.show(dialogModel);
-    }
-
-    function activate(id) {
-        logger.log('Order Detail View Activated', null, 'orderDetail', true);
-
-        var getOrder = dataContext.getOrderById(parseInt(id), vm.order);
-        var getProductLookup = dataContext.getProductLookup(vm.productsLookup);
-        return Q.all([getProductLookup, getOrder]);
-                
-    }
-
-    function addOrderLine() {
-        dataContext.addOrderLine(vm.order().OrderID());
     };
 
-    function queryFailed(error) {
-        toastr.error("Query failed: " + error.message);
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    var addOrderLine = function () {
+        dataContext.addOrderLine(vm.order().OrderID());
+    };
 
     var goBack = function () {
         router.navigateBack();
@@ -122,13 +79,13 @@ function (logger, router, dataContext, dialog) {
 
         function confirmDelete(selectedOption) {
             if (selectedOption === 'Yes') {
-                session().entityAspect.setDeleted();
-                save().then(success).fail(failed).fin(finish);
+                dataContext.deleteOrder(vm.order())
+                    .then(success).fail(failed);
             }
             isDeleting(false);
 
             function success() {
-                router.navigateTo('#/orders');
+                router.navigate('#/orders');
             }
 
             function failed(error) {
@@ -138,9 +95,7 @@ function (logger, router, dataContext, dialog) {
                     errorMsg, error, system.getModuleId(vm), true);
             }
 
-            function finish() {
-                return selectedOption;
-            }
+            
         }
 
     };
@@ -149,9 +104,8 @@ function (logger, router, dataContext, dialog) {
         if (isDeleting()) { return false; }
 
         if (hasChanges()) {
-            var title = 'Do you want to leave "' +
-                session().title() + '" ?';
-            var msg = 'Navigate away and cancel your changes?';
+            var msg = 'Do you want to leave?';
+            var title = 'Navigate away and cancel your changes?';
 
             return app.showMessage(title, msg, ['Yes', 'No'])
                 .then(checkAnswer);
@@ -169,7 +123,28 @@ function (logger, router, dataContext, dialog) {
     var deleteOrderLine = function (orderDetail) {
         orderDetail.entityAspect.setDeleted();
     };
-    //#endregion
 
+
+    var vm = {
+        activate: activate,
+        canDeactivate: canDeactivate,
+        title: 'order',
+        order: ko.observable(),
+        productsLookup: ko.observableArray(),
+        canSave: canSave,
+        hasChanges: hasChanges,
+        goBack: goBack,
+        save: save,
+        cancel: cancel,
+        deleteOrder: deleteOrder,
+        addOrderLine: addOrderLine,
+        testvalue: ko.observable(4500.10).money(),
+        editBillAddress: editBillAddress,
+        editShipAddress: editShipAddress,
+        deleteOrderLine: deleteOrderLine
+    };
+
+
+    return vm;
 
 });
