@@ -40,15 +40,9 @@
             </fieldset>
             <div class="span3 offset1">
                 <label><strong>Order Date</strong></label>
-                <div class="input-append">
-                    <input type="text" class="input-small" data-bind="datepicker: {}, dateString: OrderDate" />
-                    <span class="add-on"><i class="icon-calendar"></i></span>
-                </div>
+                <input type="text" class="input-small" data-bind="datepicker: {}, dateString: OrderDate" />
                 <label><strong>Required Date</strong></label>
-                <div class="input-append">
-                    <input type="text" class="input-small" data-bind="datepicker: {}, dateString: RequiredDate" />
-                    <span class="add-on"><i class="icon-calendar"></i></span>
-                </div>
+                <input type="text" class="input-small" data-bind="datepicker: {}, dateString: RequiredDate" />
             </div>
             <h4 class="span2 muted text-right"><i>Order #</i><i data-bind="text: OrderID"></i></h4>
         </div>
@@ -70,10 +64,7 @@
                         <select class="input-xlarge" data-bind="options: $root.productsLookup, optionsText: 'ProductName', optionsValue: 'ProductID', value: ProductID, optionsCaption: 'Choose...'"></select>
                     </td>
                     <td>
-                        <div class="input-prepend">
-                            <span class="add-on">$</span>
-                            <input type="text" class="input-mini text-right" data-bind="value: UnitPrice, valueUpdate: 'afterkeydown'" />
-                        </div>
+                        <input type="text" class="input-mini text-right" data-bind="value: UnitPrice, valueUpdate: 'afterkeydown'" />
                     </td>
                     <td>
                         <input type="text" class="input-mini text-right" data-bind="value: Quantity, valueUpdate: 'afterkeydown'" />

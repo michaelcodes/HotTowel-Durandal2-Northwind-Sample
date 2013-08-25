@@ -1,4 +1,5 @@
 using System;
+using System.Web;
 using System.Web.Optimization;
 
 namespace HotTowelNorthwind
@@ -10,8 +11,7 @@ namespace HotTowelNorthwind
             bundles.IgnoreList.Clear();
             AddDefaultIgnorePatterns(bundles.IgnoreList);
 
-            bundles.Add(
-              new ScriptBundle("~/scripts/vendor")
+            var vendorBundle = new ScriptBundle("~/scripts/vendor")
                 .Include("~/scripts/jquery-{version}.js")
                 .Include("~/scripts/bootstrap.js")
                 .Include("~/scripts/knockout-{version}.js")
@@ -20,8 +20,12 @@ namespace HotTowelNorthwind
                 .Include("~/scripts/breeze.debug.js")
                 .Include("~/scripts/moment.js")
                 .Include("~/scripts/jquery-ui-1.10.3.custom.min.js")
-                .Include("~/scripts/knockout-jqueryui.min.js")
-              );
+                .Include("~/scripts/knockout-jqueryui.min.js");
+
+            if (!HttpContext.Current.IsDebuggingEnabled)
+                vendorBundle.Include("~/App/main-built.js");
+
+            bundles.Add(vendorBundle);
 
             bundles.Add(
               new StyleBundle("~/Content/css")
