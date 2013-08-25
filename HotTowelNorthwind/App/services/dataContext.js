@@ -1,11 +1,16 @@
-﻿define(['services/logger', 'services/modelExtensions', 'durandal/system'],
+﻿define(['services/logger',
+        'services/modelExtensions',
+        'durandal/system'],
     function (logger, modelExtensions, system) {
         var EntityQuery = breeze.EntityQuery;
         var manager = new breeze.EntityManager('breeze/Breeze');
-
-        
+        var hasChanges = ko.observable(false);
 
         modelExtensions.registerModelExtensions(manager);
+        manager.fetchMetadata().then(setupCustomValidators);
+        manager.hasChangesChanged.subscribe(function (eventArgs) {
+            hasChanges(eventArgs.hasChanges);
+        });
 
         var getCustomers = function () {
             var query = breeze.EntityQuery.
@@ -95,17 +100,9 @@
             return saveChanges();
         };
 
-        var hasChanges = ko.observable(false);
-
-
-
-        manager.hasChangesChanged.subscribe(function (eventArgs) {
-            hasChanges(eventArgs.hasChanges);
-        });
-
-        manager.fetchMetadata().then(setupCustomValidators);
 
         return {
+            hasChanges: hasChanges,
             getCustomers: getCustomers,
             getCustomerById: getCustomerById,
             getOrders: getOrders,
@@ -114,7 +111,6 @@
             addOrderLine: addOrderLine,
             saveChanges: saveChanges,
             cancelChanges: cancelChanges,
-            hasChanges: hasChanges,
             deleteOrder: deleteOrder,
         };
 

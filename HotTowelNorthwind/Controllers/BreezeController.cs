@@ -17,12 +17,12 @@ namespace HotTowelNorthwind.Controllers
         readonly EFContextProvider<NorthwindContext> _contextProvider =
             new EFContextProvider<NorthwindContext>();
 
-        private static JsonSerializer CreateJsonSerializer()
-        {
-            var serializerSettings = BreezeConfig.Instance.GetJsonSerializerSettings();
-            var jsonSerializer = JsonSerializer.Create(serializerSettings);
-            return jsonSerializer;
-        }
+        //private static JsonSerializer CreateJsonSerializer()
+        //{
+        //    var serializerSettings = BreezeConfig.Instance.GetJsonSerializerSettings();
+        //    var jsonSerializer = JsonSerializer.Create(serializerSettings);
+        //    return jsonSerializer;
+        //}
 
         [System.Web.Http.HttpGet]
         public string Metadata()
