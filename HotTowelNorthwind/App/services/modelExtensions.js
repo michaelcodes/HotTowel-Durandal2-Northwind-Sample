@@ -10,6 +10,13 @@
                 function () {
                     return orderDetail.UnitPrice() * parseInt("0" + orderDetail.Quantity(), 10);
                 }).money();
+
+            orderDetail.isValid = ko.computed(
+                function () {
+                    return orderDetail.entityAspect.validateProperty('ProductID') &&
+                           orderDetail.entityAspect.validateProperty('UnitPrice') &&
+                           orderDetail.entityAspect.validateProperty('Quantity');
+                });
         }
 
         var orderInitializer = function (order) {

@@ -16,9 +16,6 @@ function (logger, router, dataContext, dialog, app) {
 
     };
 
-
-
-
     var editBillAddress = function (customer) {
         var dialogModel = {
             customer: customer,
@@ -138,10 +135,9 @@ function (logger, router, dataContext, dialog, app) {
         cancel: cancel,
         deleteOrder: deleteOrder,
         addOrderLine: addOrderLine,
-        testvalue: ko.observable(4500.10).money(),
         editBillAddress: editBillAddress,
         editShipAddress: editShipAddress,
-        deleteOrderLine: deleteOrderLine
+        deleteOrderLine: deleteOrderLine,
     };
 
 

@@ -1,7 +1,9 @@
-﻿define(['services/logger', 'services/modelExtensions'],
-    function (logger, modelExtensions) {
+﻿define(['services/logger', 'services/modelExtensions', 'durandal/system'],
+    function (logger, modelExtensions, system) {
         var EntityQuery = breeze.EntityQuery;
         var manager = new breeze.EntityManager('breeze/Breeze');
+
+        
 
         modelExtensions.registerModelExtensions(manager);
 
@@ -58,7 +60,7 @@
         };
 
         var addOrderLine = function (orderId) {
-            return manager.createEntity('OrderDetail', { OrderID: orderId });
+            return manager.createEntity('OrderDetail', { OrderID: orderId, Quantity: 1 });
         }
 
         var cancelChanges = function () {
@@ -77,7 +79,7 @@
 
             function saveFailed(error) {
                 var msg = 'Save failed: ' + getErrorMessages(error);
-                //logError(msg, error);
+                logError(msg, error);
                 error.message = msg;
                 throw error;
             }
@@ -95,10 +97,13 @@
 
         var hasChanges = ko.observable(false);
 
+
+
         manager.hasChangesChanged.subscribe(function (eventArgs) {
             hasChanges(eventArgs.hasChanges);
         });
 
+        manager.fetchMetadata().then(setupCustomValidators);
 
         return {
             getCustomers: getCustomers,
@@ -112,4 +117,49 @@
             hasChanges: hasChanges,
             deleteOrder: deleteOrder,
         };
+
+
+        function getErrorMessages(error) {
+            var msg = error.message;
+            if (msg.match(/validation error/i)) {
+                return getValidationMessages(error);
+            }
+            return msg;
+        }
+
+        function getValidationMessages(error) {
+            try {
+                //foreach entity with a validation error
+                return error.entitiesWithErrors.map(function (entity) {
+                    // get each validation error
+                    return entity.entityAspect.getValidationErrors().map(function (valError) {
+                        // return the error message from the validation
+                        return valError.errorMessage;
+                    }).join('; <br/>');
+                }).join('; <br/>');
+            }
+            catch (e) { }
+            return 'validation error';
+        }
+
+        function logError(msg, error) {
+            logger.logError(msg, error, 'datacontext', true);
+        }
+
+        function setupCustomValidators()
+        {
+            var minQty = new breeze.Validator(
+                "minQty",                       // validator name
+                function (value, context) {     // validation function
+                    return value > 0;
+                },    
+                {                               // validator context
+                    messageTemplate: "'%displayName%' must be greater than 0"
+                });
+            var employeeType = manager.metadataStore.getEntityType("OrderDetail");
+            employeeType
+                .getProperty("Quantity")
+                .validators.push(minQty);
+
+        }
     });

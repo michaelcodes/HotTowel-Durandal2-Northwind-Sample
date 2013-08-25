@@ -44,8 +44,11 @@ namespace HotTowelNorthwind.Models
         [Key]
         public int OrderDetailsID { get; set; }
         public int? OrderID { get; set; }
+        [Required]
         public int ProductID { get; set; }
+        [Range(0.0, double.MaxValue)]
         public decimal UnitPrice { get; set; }
+        [Range(0, int.MaxValue)]
         public short Quantity { get; set; }
         [ForeignKey("OrderID")]
         public Order Order { get; set; }
