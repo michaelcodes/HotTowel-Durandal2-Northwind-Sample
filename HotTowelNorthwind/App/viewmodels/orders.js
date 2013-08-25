@@ -9,21 +9,6 @@ function (logger, router, dataContext) {
         gotoOrder: gotoOrder,
     };
 
-    var serviceName = 'breeze/Breeze';
-
-    //var manager = new breeze.EntityManager(serviceName);
-    //var store = manager.metadataStore;
-    //var Customer = function () {
-    //    this.FirstName = ko.observable('');
-    //    this.LastName = ko.observable('');
-    //    this.fullName = ko.computed(
-    //        function () {
-    //            return this.FirstName() + " " + this.LastName();
-    //        }, this);S
-    //};
-
-    //store.registerEntityTypeCtor("Customer", Customer);
-
     return vm;
 
     //#region Internal Methods
@@ -36,23 +21,11 @@ function (logger, router, dataContext) {
 
     function activate() {
         logger.log('Orders View Activated', null, 'orders', true);
-        //this.orders = dataContext.getOrders();
-        
 
         return dataContext.getOrders()
-                .then(querySucceeded)
-                .fail(queryFailed);
-
-
-    }
-
-
-    function querySucceeded(data) {
-        vm.orders(data.results);
-    }
-
-    function queryFailed(error) {
-        toastr.error("Query failed: " + error.message);
+                .then(function (data) {
+                    vm.orders(data.results);
+                });
     }
 
     //#endregion

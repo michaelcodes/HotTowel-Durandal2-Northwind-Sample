@@ -13,7 +13,6 @@ function (logger, router, dataContext, dialog, app) {
         var getOrder = dataContext.getOrderById(parseInt(id), vm.order);
         var getProductLookup = dataContext.getProductLookup(vm.productsLookup);
         return Q.all([getProductLookup, getOrder]);
-
     };
 
     var editBillAddress = function (customer) {
@@ -139,7 +138,6 @@ function (logger, router, dataContext, dialog, app) {
         editShipAddress: editShipAddress,
         deleteOrderLine: deleteOrderLine,
     };
-
 
     return vm;
 

@@ -16,8 +16,6 @@
             router.map([
                 { route: '', title: 'Home', moduleId: 'viewmodels/home', nav: true },
                 { route: 'details', moduleId: 'viewmodels/details', nav: true },
-                { route: 'customers', moduleId: 'viewmodels/customers', nav: true },
-                { route: 'customerDetail/:id', moduleId: 'viewmodels/customerDetail', nav: false },
                 { route: 'orders', moduleId: 'viewmodels/orders', nav: true },
                 { route: 'order/:id', moduleId: 'viewmodels/order', nav: false }
             ]).buildNavigationModel();

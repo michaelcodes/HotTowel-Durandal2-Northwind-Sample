@@ -2,7 +2,7 @@
 
     return { registerModelExtensions: registerModelExtensions };
 
-    function registerModelExtensions (manager) {
+    function registerModelExtensions (manager, products) {
         var store = manager.metadataStore;
 
         var orderDetailInitializer = function (orderDetail) {
@@ -17,6 +17,15 @@
                            orderDetail.entityAspect.validateProperty('UnitPrice') &&
                            orderDetail.entityAspect.validateProperty('Quantity');
                 });
+
+            orderDetail.ProductID.subscribe(function (newValue) {
+                var product = manager.getEntityByKey("Product", newValue, true);
+                if (product) {
+                    orderDetail.UnitPrice(product.UnitPrice());
+                } else {
+                    orderDetail.UnitPrice(0);
+                }
+            });
         }
 
         var orderInitializer = function (order) {

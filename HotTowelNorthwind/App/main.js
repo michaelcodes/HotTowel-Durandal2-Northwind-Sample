@@ -30,10 +30,6 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'services/log
         toastr.options.positionClass = 'toast-bottom-right';
         toastr.options.backgroundpositionClass = 'toast-bottom-right';
 
-        //router.handleInvalidRoute = function (route, params) {
-        //    logger.logError('No Route Found', route, 'main', true);
-        //};
-
         // When finding a viewmodel module, replace the viewmodel string 
         // with view to find it partner view.
         viewLocator.useConvention();

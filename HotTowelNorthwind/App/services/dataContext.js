@@ -12,19 +12,10 @@
             hasChanges(eventArgs.hasChanges);
         });
 
-        var getCustomers = function () {
-            var query = breeze.EntityQuery.
-                from("Customers");
-
-            return manager
-                .executeQuery(query);
-           
-        };
 
         var getProductLookup = function (productsLookup) {
             var query = breeze.EntityQuery
                 .from("Products")
-                .select("ProductID, ProductName, UnitPrice")
                 .orderBy("ProductName");
 
             return manager
@@ -32,11 +23,6 @@
                     productsLookup(data.results);
                 });
         }
-
-        var getCustomerById = function (id) {
-            return manager
-                .fetchEntityByKey("Customer", id, true);
-        };
 
         var getOrders = function () {
             var query = breeze.EntityQuery
@@ -103,8 +89,6 @@
 
         return {
             hasChanges: hasChanges,
-            getCustomers: getCustomers,
-            getCustomerById: getCustomerById,
             getOrders: getOrders,
             getOrderById: getOrderById,
             getProductLookup: getProductLookup,

@@ -205,14 +205,10 @@
     <Content Include="App_Data\Northwind_log.ldf">
       <DependentUpon>Northwind.MDF</DependentUpon>
     </Content>
-    <Content Include="App\viewmodels\customerDetail.js" />
     <Content Include="App\viewmodels\details.js" />
-    <Content Include="App\viewmodels\customers.js" />
     <Content Include="App\viewmodels\home.js" />
     <Content Include="App\viewmodels\shell.js" />
-    <Content Include="App\views\customerDetail.html" />
     <Content Include="App\views\details.html" />
-    <Content Include="App\views\customers.html" />
     <Content Include="Content\durandal.css" />
     <Content Include="Content\font-awesome-ie7.css" />
     <Content Include="Content\font-awesome-ie7.min.css" />
