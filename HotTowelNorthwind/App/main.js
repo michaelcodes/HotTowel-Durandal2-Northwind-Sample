@@ -20,6 +20,16 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'services/log
     //>>excludeEnd("build");
     knockoutExtenders.registerExtenders();
 
+    system.defer = function (action) {
+        var deferred = Q.defer();
+        action.call(deferred, deferred);
+        var promise = deferred.promise;
+        deferred.promise = function () {
+            return promise;
+        };
+        return deferred;
+    };
+
     app.configurePlugins({
         router: true,
         dialog: true,
