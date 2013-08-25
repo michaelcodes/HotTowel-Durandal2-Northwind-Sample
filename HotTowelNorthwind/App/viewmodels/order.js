@@ -10,7 +10,7 @@ function (logger, router, dataContext, dialog, app) {
     var activate = function (id) {
         logger.log('Order Detail View Activated', null, 'orderDetail', true);
 
-        var getOrder = dataContext.getOrderById(parseInt(id), vm.order);
+        var getOrder = dataContext.getOrderById(parseInt(id, 10), vm.order);
         var getProductLookup = dataContext.getProductLookup(vm.productsLookup);
         return Q.all([getProductLookup, getOrder]);
     };
@@ -19,7 +19,7 @@ function (logger, router, dataContext, dialog, app) {
         var dialogModel = {
             customer: customer,
             viewUrl: 'views/billingaddress'
-        }
+        };
         dialogModel.closeDialog = function () {
             dialog.close(this);
         };
@@ -30,7 +30,7 @@ function (logger, router, dataContext, dialog, app) {
         var dialogModel = {
             order: selectedorder,
             viewUrl: 'views/shippingaddress'
-        }
+        };
         dialogModel.closeDialog = function () {
             dialog.close(this);
         };

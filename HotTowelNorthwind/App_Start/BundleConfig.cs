@@ -13,14 +13,13 @@ namespace HotTowelNorthwind
             bundles.Add(
               new ScriptBundle("~/scripts/vendor")
                 .Include("~/scripts/jquery-{version}.js")
-                .Include("~/scripts/knockout-{version}.debug.js")
-                .Include("~/scripts/sammy-{version}.js")
+                .Include("~/scripts/bootstrap.js")
+                .Include("~/scripts/knockout-{version}.js")
                 .Include("~/scripts/toastr.js")
                 .Include("~/scripts/Q.js")
                 .Include("~/scripts/breeze.debug.js")
-                .Include("~/scripts/bootstrap.js")
                 .Include("~/scripts/moment.js")
-                .Include("~/scripts/jquery-ui-1.10.3.js")
+                .Include("~/scripts/jquery-ui-1.10.3.custom.min.js")
                 .Include("~/scripts/knockout-jqueryui.min.js")
               );
 
@@ -33,8 +32,7 @@ namespace HotTowelNorthwind
                 .Include("~/Content/toastr.css")
                 .Include("~/Content/app.css")
                 .Include("~/Content/font-awesome.css")
-                .Include("~/Content/themse/base/jquery-ui.css")
-                .Include("~/Content/themes/base/jquery.ui.all.css")
+                .Include("~/Content/jquery-ui-1.10.3.custom.min.css")
               );
         }
 

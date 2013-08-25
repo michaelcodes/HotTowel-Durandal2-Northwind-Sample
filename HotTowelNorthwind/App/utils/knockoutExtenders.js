@@ -2,8 +2,8 @@
     return { registerExtenders: registerExtenders };
 
     function registerExtenders() {
-        RegisterDateBinding()
-        RegisterMoneyExtension()
+        RegisterDateBinding();
+        RegisterMoneyExtension();
     }
 
 

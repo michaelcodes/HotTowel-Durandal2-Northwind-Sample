@@ -6,6 +6,22 @@
         var manager = new breeze.EntityManager('breeze/Breeze');
         var hasChanges = ko.observable(false);
 
+        var setupCustomValidators = function () {
+            var minQty = new breeze.Validator(
+                "minQty",                       // validator name
+                function (value, context) {     // validation function
+                    return value > 0;
+                },
+                {                               // validator context
+                    messageTemplate: "'%displayName%' must be greater than 0"
+                });
+            var employeeType = manager.metadataStore.getEntityType("OrderDetail");
+            employeeType
+                .getProperty("Quantity")
+                .validators.push(minQty);
+
+        };
+
         modelExtensions.registerModelExtensions(manager);
         manager.fetchMetadata().then(setupCustomValidators);
         manager.hasChangesChanged.subscribe(function (eventArgs) {
@@ -22,7 +38,7 @@
                 .executeQuery(query).then(function (data) {
                     productsLookup(data.results);
                 });
-        }
+        };
 
         var getOrders = function () {
             var query = breeze.EntityQuery
@@ -52,7 +68,7 @@
 
         var addOrderLine = function (orderId) {
             return manager.createEntity('OrderDetail', { OrderID: orderId, Quantity: 1 });
-        }
+        };
 
         var cancelChanges = function () {
             manager.rejectChanges();
@@ -126,20 +142,5 @@
             logger.logError(msg, error, 'datacontext', true);
         }
 
-        function setupCustomValidators()
-        {
-            var minQty = new breeze.Validator(
-                "minQty",                       // validator name
-                function (value, context) {     // validation function
-                    return value > 0;
-                },    
-                {                               // validator context
-                    messageTemplate: "'%displayName%' must be greater than 0"
-                });
-            var employeeType = manager.metadataStore.getEntityType("OrderDetail");
-            employeeType
-                .getProperty("Quantity")
-                .validators.push(minQty);
 
-        }
     });

@@ -26,15 +26,15 @@
                     orderDetail.UnitPrice(0);
                 }
             });
-        }
+        };
 
         var orderInitializer = function (order) {
             order.grandtotal = ko.computed(function () {
                 var total = 0;
-                $.each(order.OrderDetails(), function () { total += this.rowtotal() });
+                $.each(order.OrderDetails(), function () { total += this.rowtotal(); });
                 return total;
             }).money();
-        }
+        };
 
         store.registerEntityTypeCtor("OrderDetail", null, orderDetailInitializer);
         store.registerEntityTypeCtor("Order", null, orderInitializer);
