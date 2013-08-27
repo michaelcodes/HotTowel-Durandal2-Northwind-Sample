@@ -2,12 +2,12 @@
     return { registerExtenders: registerExtenders };
 
     function registerExtenders() {
-        RegisterDateBinding();
-        RegisterMoneyExtension();
+        registerDateBinding();
+        registerMoneyExtension();
     }
 
 
-    function RegisterDateBinding () {
+    function registerDateBinding () {
         ko.bindingHandlers.dateString = {
             //Credit to Ryan Rahlf http://stackoverflow.com/questions/17001303/date-formatting-issues-with-knockout-and-syncing-to-breeze-js-entityaspect-modif
             init: function (element, valueAccessor) {
@@ -31,7 +31,7 @@
 
 
 
-    function RegisterMoneyExtension() {
+    function registerMoneyExtension() {
         //Credit to Josh Bush http://freshbrewedcode.com/joshbush/2011/12/27/knockout-js-observable-extensions/
         var format = function (value) {
             toks = value.toFixed(2).replace('-', '').split('.');

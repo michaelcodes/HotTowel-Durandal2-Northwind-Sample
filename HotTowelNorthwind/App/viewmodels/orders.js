@@ -1,7 +1,7 @@
 ﻿define(['services/logger',
         'plugins/router',
-        'services/dataContext'],
-function (logger, router, dataContext) {
+        'services/datacontext'],
+function (logger, router, datacontext) {
     var vm = {
         activate: activate,
         title: 'Orders',
@@ -22,7 +22,7 @@ function (logger, router, dataContext) {
     function activate() {
         logger.log('Orders View Activated', null, 'orders', true);
 
-        return dataContext.getOrders()
+        return datacontext.getOrders()
                 .then(function (data) {
                     vm.orders(data.results);
                 });

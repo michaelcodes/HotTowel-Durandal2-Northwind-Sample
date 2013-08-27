@@ -1,10 +1,10 @@
 ﻿define(['services/logger',
-        'services/modelExtensions',
+        'services/modelextensions',
         'durandal/system'],
-    function (logger, modelExtensions, system) {
-        var EntityQuery = breeze.EntityQuery;
-        var manager = new breeze.EntityManager('breeze/Breeze');
-        var hasChanges = ko.observable(false);
+    function (logger, modelextensions, system) {
+        var EntityQuery = breeze.EntityQuery,
+            manager = new breeze.EntityManager('breeze/Breeze'),
+            hasChanges = ko.observable(false);
 
         var setupCustomValidators = function () {
             var minQty = new breeze.Validator(
@@ -22,7 +22,7 @@
 
         };
 
-        modelExtensions.registerModelExtensions(manager);
+        modelextensions.registerModelExtensions(manager);
         manager.fetchMetadata().then(setupCustomValidators);
         manager.hasChangesChanged.subscribe(function (eventArgs) {
             hasChanges(eventArgs.hasChanges);

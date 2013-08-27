@@ -1,24 +1,24 @@
 ﻿define(['services/logger',
         'plugins/router',
-        'services/dataContext',
+        'services/datacontext',
         'plugins/dialog',
         'durandal/app'],
-function (logger, router, dataContext, dialog, app) {
+function (logger, router, datacontext, dialog, app) {
     var isSaving = ko.observable(false);
     var isDeleting = ko.observable(false);
 
     var activate = function (id) {
         logger.log('Order Detail View Activated', null, 'orderDetail', true);
 
-        var getOrder = dataContext.getOrderById(parseInt(id, 10), vm.order);
-        var getProductLookup = dataContext.getProductLookup(vm.productsLookup);
+        var getOrder = datacontext.getOrderById(parseInt(id, 10), vm.order);
+        var getProductLookup = datacontext.getProductLookup(vm.productsLookup);
         return Q.all([getProductLookup, getOrder]);
     };
 
     var editBillAddress = function (customer) {
         var dialogModel = {
             customer: customer,
-            viewUrl: 'views/billingaddress'
+            viewUrl: 'views/orderSubViews/billingaddress'
         };
         dialogModel.closeDialog = function () {
             dialog.close(this);
@@ -29,7 +29,7 @@ function (logger, router, dataContext, dialog, app) {
     var editShipAddress = function (selectedorder) {
         var dialogModel = {
             order: selectedorder,
-            viewUrl: 'views/shippingaddress'
+            viewUrl: 'views/orderSubViews/shippingaddress'
         };
         dialogModel.closeDialog = function () {
             dialog.close(this);
@@ -38,7 +38,7 @@ function (logger, router, dataContext, dialog, app) {
     };
 
     var addOrderLine = function () {
-        dataContext.addOrderLine(vm.order().OrderID());
+        datacontext.addOrderLine(vm.order().OrderID());
     };
 
     var goBack = function () {
@@ -46,11 +46,11 @@ function (logger, router, dataContext, dialog, app) {
     };
 
     var hasChanges = ko.computed(function () {
-        return dataContext.hasChanges();
+        return datacontext.hasChanges();
     });
 
     var cancel = function () {
-        dataContext.cancelChanges();
+        datacontext.cancelChanges();
     };
 
     var canSave = ko.computed(function () {
@@ -59,7 +59,7 @@ function (logger, router, dataContext, dialog, app) {
 
     var save = function () {
         isSaving(true);
-        return dataContext.saveChanges().fin(complete);
+        return datacontext.saveChanges().fin(complete);
 
         function complete() {
             isSaving(false);
@@ -75,7 +75,7 @@ function (logger, router, dataContext, dialog, app) {
 
         function confirmDelete(selectedOption) {
             if (selectedOption === 'Yes') {
-                dataContext.deleteOrder(vm.order())
+                datacontext.deleteOrder(vm.order())
                     .then(success).fail(failed);
             }
             isDeleting(false);

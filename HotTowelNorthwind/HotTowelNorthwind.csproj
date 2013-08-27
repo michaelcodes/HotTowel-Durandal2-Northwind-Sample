@@ -191,14 +191,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\main.js" />
-    <Content Include="App\services\dataContext.js" />
+    <Content Include="App\services\datacontext.js" />
     <Content Include="App\services\logger.js" />
-    <Content Include="App\services\modelExtensions.js" />
-    <Content Include="App\utils\knockoutExtenders.js" />
+    <Content Include="App\services\modelextensions.js" />
+    <Content Include="App\utils\knockoutextenders.js" />
     <Content Include="App\viewmodels\order.js" />
     <Content Include="App\viewmodels\orders.js" />
-    <Content Include="App\views\billingaddress.html" />
-    <Content Include="App\views\shippingaddress.html" />
+    <Content Include="App\views\ordersubviews\actions.html" />
+    <Content Include="App\views\ordersubviews\billingaddress.html" />
+    <Content Include="App\views\ordersubviews\orderlines.html" />
+    <Content Include="App\views\ordersubviews\shippingaddress.html" />
     <Content Include="App\views\order.html" />
     <Content Include="App\views\orders.html" />
     <Content Include="App_Data\Northwind.MDF" />

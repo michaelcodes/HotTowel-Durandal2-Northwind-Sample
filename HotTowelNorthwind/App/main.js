@@ -11,14 +11,14 @@ define('jquery', function () { return jQuery; });
 define('knockout', ko);
 
 
-define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'services/logger', 'utils/knockoutExtenders'],
-    function (system, app, viewLocator, logger, knockoutExtenders) {
+define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'services/logger', 'utils/knockoutextenders'],
+    function (system, app, viewLocator, logger, knockoutextenders) {
 
     // Enable debug message to show in the console 
     //>>excludeStart("build", true);
     system.debug(true);
     //>>excludeEnd("build");
-    knockoutExtenders.registerExtenders();
+    knockoutextenders.registerExtenders();
 
     system.defer = function (action) {
         var deferred = Q.defer();

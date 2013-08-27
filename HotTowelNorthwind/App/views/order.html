@@ -1,97 +1,55 @@
 ﻿<div class="container-fluid">
 
-    <div class="row-fluid">
-        <div class="form-actions">
-            <button class="btn btn-inverse"
-                data-bind="click: goBack"><i class="icon-hand-left icon-white"></i> Back</button>
-            <button class="btn btn-inverse"
-                data-bind="click: cancel, enable: canSave"><i class="icon-undo icon-white"></i> Cancel</button>
-            <button class="btn btn-primary"
-                data-bind="click: save, enable: canSave"><i class="icon-save icon-white"></i> Save</button>
-        
-            <i class="icon-asterisk icon-red" data-bind="visible: hasChanges"></i>
-        
-            <button class="btn btn-danger pull-right"
-                data-bind="click: deleteOrder, disable: hasChanges"><i class="icon-trash icon-white"></i> Delete
-            </button>
-        </div>
-    </div>
+    <div class="row-fluid" 
+        data-bind="compose: 'ordersubviews/actions.html'"></div>
+
     <div class="row-fluid" data-bind="with: order">
         <div class="span12 well">   
-            <fieldset class="span3" data-bind="with: Customer">
+
+
+            <fieldset class="span4" data-bind="with: Customer">
                 <legend class="muted">
                     Billing Address 
-                    <button class="btn btn-inverse btn-mini" data-bind="click: $root.editBillAddress">Edit</button>
+                    <button class="btn btn-inverse btn-mini" 
+                        data-bind="click: $root.editBillAddress">Edit</button>
                 </legend>
                 <strong data-bind="text: CompanyName"></strong><br />
                 <span data-bind="text: Address"></span><br />
                 <span data-bind="text: City"></span>, <span data-bind="text: Region"></span> <span data-bind="text: PostalCode"></span><br />
                 <span data-bind="text: Country"></span><br />
             </fieldset>
-            <fieldset class="span3">
+
+
+            <fieldset class="span4">
                 <legend class="muted">
                     Shipping Address 
-                    <button class="btn btn-inverse btn-mini" data-bind="click: $parent.editShipAddress">Edit</button>
+                    <button class="btn btn-inverse btn-mini" 
+                        data-bind="click: $parent.editShipAddress">Edit</button>
                 </legend>
                 <strong data-bind="text:ShipName"></strong><br />
                 <span data-bind="text: ShipAddress"></span><br />
                 <span data-bind="text: ShipCity"></span>, <span data-bind="text: ShipRegion"></span> <span data-bind="text: ShipPostalCode"></span><br />
                 <span data-bind="text: ShipCountry"></span><br />
             </fieldset>
-            <div class="span3 offset1">
+
+
+            <div class="span2">
                 <label><strong>Order Date</strong></label>
-                <input type="text" class="input-small" data-bind="datepicker: {}, dateString: OrderDate" />
+                <input type="text" class="input-small" 
+                    data-bind="datepicker: {}, dateString: OrderDate" />
+
                 <label><strong>Required Date</strong></label>
-                <input type="text" class="input-small" data-bind="datepicker: {}, dateString: RequiredDate" />
+                <input type="text" class="input-small" 
+                    data-bind="datepicker: {}, dateString: RequiredDate" />
             </div>
-            <h4 class="span2 muted text-right"><i>Order #</i><i data-bind="text: OrderID"></i></h4>
+
+
+            <h4 class="span2 muted text-right">
+                <i>Order #</i><i data-bind="text: OrderID"></i>
+            </h4>
         </div>
     </div>
-    <div class="row-fluid">
-        <table class="table table-bordered table-edit table-striped">
-            <thead>
-                <tr class="info">
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: order().OrderDetails">
-                <tr data-bind="css: { error: !isValid() }">
-                    <td>
-                        <select class="input-xlarge" data-bind="options: $root.productsLookup, optionsText: 'ProductName', optionsValue: 'ProductID', value: ProductID, optionsCaption: 'Choose...'"></select>
-                    </td>
-                    <td>
-                        <input type="text" class="input-mini text-right" data-bind="value: UnitPrice, valueUpdate: 'afterkeydown'" />
-                    </td>
-                    <td>
-                        <input type="text" class="input-mini text-right" data-bind="value: Quantity, valueUpdate: 'afterkeydown'" />
-                    </td>
-                    <td><div class="text-right" data-bind="text: rowtotal.formatted"></div></td>
-                    <td>
-                        <button class="btn btn-sm pull-right" data-bind="click: $root.deleteOrderLine"><i class="icon-remove icon-red icon-large"></i></button>
-                    </td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="3">
-                        <button class="btn btn-success pull-left" data-bind='click: addOrderLine'><i class="icon-plus icon-white"></i> Add Line</button>
-                        <div class="text-right muted">
-                            <strong>Grand Total: </strong>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="text-right">
-                            <strong data-bind="text: order().grandtotal.formatted"></strong>
-                        </div>
-                    </td>
-                    <td></td>
-                </tr>
-            </tfoot>
-        </table>
-        
-    </div>
+
+    <div class="row-fluid" 
+        data-bind="compose: 'ordersubviews/orderlines.html'"></div>
 </div>
