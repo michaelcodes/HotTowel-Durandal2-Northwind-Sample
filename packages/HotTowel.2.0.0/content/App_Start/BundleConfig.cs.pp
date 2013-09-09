@@ -1,8 +1,7 @@
-using System;
-using System.Web;
+﻿using System;
 using System.Web.Optimization;
 
-namespace HotTowelNorthwind
+namespace $rootnamespace$
 {
     public class BundleConfig
     {
@@ -11,32 +10,25 @@ namespace HotTowelNorthwind
             bundles.IgnoreList.Clear();
             AddDefaultIgnorePatterns(bundles.IgnoreList);
 
-            var vendorBundle = new ScriptBundle("~/scripts/vendor")
+            bundles.Add(
+              new ScriptBundle("~/scripts/vendor")
                 .Include("~/scripts/jquery-{version}.js")
-                .Include("~/scripts/bootstrap.js")
-                .Include("~/scripts/knockout-{version}.js")
+                .Include("~/scripts/knockout-{version}.debug.js")
                 .Include("~/scripts/toastr.js")
                 .Include("~/scripts/Q.js")
                 .Include("~/scripts/breeze.debug.js")
+                .Include("~/scripts/bootstrap.js")
                 .Include("~/scripts/moment.js")
-                .Include("~/scripts/jquery-ui-1.10.3.custom.min.js")
-                .Include("~/scripts/knockout-jqueryui.min.js");
-
-            if (!HttpContext.Current.IsDebuggingEnabled)
-                vendorBundle.Include("~/App/main-built.js");
-
-            bundles.Add(vendorBundle);
+              );
 
             bundles.Add(
               new StyleBundle("~/Content/css")
                 .Include("~/Content/ie10mobile.css")
-                .Include("~/Content/font-awesome.css")
-                .Include("~/Content/bootstrap/bootstrap.css")
-                .Include("~/Content/bootstrap/bootstrap-theme.css")
+                .Include("~/Content/bootstrap.css")
+                .Include("~/Content/bootstrap-responsive.css")
                 .Include("~/Content/durandal.css")
                 .Include("~/Content/toastr.css")
                 .Include("~/Content/app.css")
-                .Include("~/Content/jquery-ui-1.10.3.custom.min.css")
               );
         }
 

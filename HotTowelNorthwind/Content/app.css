@@ -195,6 +195,18 @@ footer span {
 		background-color: #194D7B \9;
 	}
 
+	.btn-inverse {
+		background-color: #1f1f1f;
+		color: white;
+	}
+
+	.btn-inverse:hover
+	{
+		color: #ffffff;
+		background-color: #1f1f1f;
+	}
+
+
 .icon-red
 {
 	color: #bd362f;
@@ -219,6 +231,15 @@ table.table-bordered thead tr th {
 	margin-bottom: 0;
 }
 
+.navbar {
+	z-index: 0;
+}
+
+.navbar .navbar-nav .active a
+{
+	background-color: #e5e5e5;
+}
+
 /* End Boostrap overrides  */
 /***************************/
 
@@ -235,4 +256,7 @@ table.table-bordered thead tr th {
 		padding: 10px 50px;
 		font-size: 14px;
 	}
+
+
+
 }

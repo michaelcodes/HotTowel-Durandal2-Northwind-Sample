@@ -1,12 +1,11 @@
-﻿<nav class="container-fluid navbar navbar-static-top">
+﻿<nav class="container navbar navbar-default">
     <div class="navbar-inner">
-        <ul class="nav" data-bind="foreach: router.navigationModel">
-            <li data-bind="css: { active: isActive }">
+        <ul class="nav navbar-nav" data-bind="foreach: router.navigationModel">
+            <li data-bind="css: { active: isActive }"> 
                 <a data-bind="attr: { href: hash }, text: title" href="#"></a>
             </li>
         </ul>
-        <div data-bind="css: { active: router.isNavigating }" 
-            class="pull-right loader">
+        <div data-bind="css: { active: router.isNavigating }" class="pull-right loader"> 
             <i class="icon-spinner icon-2x icon-spin"></i>
         </div>
     </div>

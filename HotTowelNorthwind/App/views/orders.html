@@ -1,20 +1,20 @@
-﻿<div class="container-fluid">
-    <h2 class="page-title" data-bind="text: title"></h2>    
-
-    <table class="table table-hover table-striped table-bordered">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Date</th>
-                <th>Customer</th>
-            </tr>
-        </thead>
-        <tbody data-bind="foreach: orders">
-            <tr data-bind="click: $root.gotoOrder">
-                <td data-bind="text: OrderID"></td>
-                <td data-bind="text: moment(OrderDate).format('LL')"></td>
-                <td data-bind="text: Customer_CompanyName"></td>
-            </tr>
-        </tbody>
-    </table>
+﻿<div class="container">
+    <div class="row">
+        <table class="table table-hover table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Date</th>
+                    <th>Customer</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: orders">
+                <tr data-bind="click: $root.gotoOrder">
+                    <td data-bind="text: OrderID"></td>
+                    <td data-bind="text: moment(OrderDate).format('LL')"></td>
+                    <td data-bind="text: Customer_CompanyName"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
