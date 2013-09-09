@@ -149,6 +149,7 @@ footer span {
 
 .navbar {
 	text-transform: uppercase;
+	z-index: 0;
 }
 
 .loader .page-progress-bar {
@@ -181,30 +182,30 @@ footer span {
 	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
 
-	.btn-info:hover, .btn-info:active, .btn-info.active, .btn-info.disabled, .btn-info[disabled] {
-		color: white;
-		background-color: #0081C2;
-		*background-color: #0081C2;
-		background-color: #194D7B;
-		*background-color: #194D7B;
-	}
+.btn-info:hover, .btn-info:active, .btn-info.active, .btn-info.disabled, .btn-info[disabled] {
+	color: white;
+	background-color: #0081C2;
+	*background-color: #0081C2;
+	background-color: #194D7B;
+	*background-color: #194D7B;
+}
 
-	.btn-info:active,
-	.btn-info.active {
-		background-color: #0081C2 \9;
-		background-color: #194D7B \9;
-	}
+.btn-info:active,
+.btn-info.active {
+	background-color: #0081C2 \9;
+	background-color: #194D7B \9;
+}
 
-	.btn-inverse {
-		background-color: #1f1f1f;
-		color: white;
-	}
+/*.btn-inverse {
+	background-color: #1f1f1f;
+	color: white;
+}
 
-	.btn-inverse:hover
-	{
-		color: #ffffff;
-		background-color: #1f1f1f;
-	}
+.btn-inverse:hover
+{
+	color: #ffffff;
+	background-color: #1f1f1f;
+}*/
 
 
 .icon-red
@@ -223,7 +224,7 @@ table.table-bordered thead tr th {
 }
 
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-  background-color: #8399a7;
+  background-color: #77CCFF;
 }
 
 .table-edit input[type="text"], .table-edit select {
@@ -231,13 +232,42 @@ table.table-bordered thead tr th {
 	margin-bottom: 0;
 }
 
-.navbar {
-	z-index: 0;
-}
-
 .navbar .navbar-nav .active a
 {
 	background-color: #e5e5e5;
+}
+
+.btn-inverse {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #363636;
+  *background-color: #222222;
+  background-image: -moz-linear-gradient(top, #444444, #222222);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#444444), to(#222222));
+  background-image: -webkit-linear-gradient(top, #444444, #222222);
+  background-image: -o-linear-gradient(top, #444444, #222222);
+  background-image: linear-gradient(to bottom, #444444, #222222);
+  background-repeat: repeat-x;
+  border-color: #222222 #222222 #000000;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff444444', endColorstr='#ff222222', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+.btn-inverse:hover,
+.btn-inverse:focus,
+.btn-inverse:active,
+.btn-inverse.active,
+.btn-inverse.disabled,
+.btn-inverse[disabled] {
+  color: #ffffff;
+  background-color: #222222;
+  *background-color: #151515;
+}
+
+.btn-inverse:active,
+.btn-inverse.active {
+  background-color: #080808 \9;
 }
 
 /* End Boostrap overrides  */
