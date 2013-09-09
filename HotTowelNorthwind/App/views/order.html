@@ -1,51 +1,74 @@
 ﻿<div class="container">
+
     <div class="row" data-bind="compose: 'ordersubviews/actions.html'"></div>
+
+
+
     <div class="row panel panel-default" data-bind="with: order">
         <div class="col-md-12 panel-body">
+
             <fieldset class="col-md-4" data-bind="with: Customer">
+
                 <legend class="muted">Billing Address
-                    <button class="btn btn-inverse btn-xs" data-bind="click: $root.editBillAddress">Edit</button>
-                </legend><strong data-bind="text: CompanyName"></strong>
-                <br />
-                <span data-bind="text: Address"></span>
-                <br />
+                    <button class="btn btn-inverse btn-xs" 
+                        data-bind="click: $root.editBillAddress">
+                        Edit
+                    </button>
+                </legend>
+
+                <strong data-bind="text: CompanyName"></strong><br />
+                <span data-bind="text: Address"></span><br />
                 <span data-bind="text: City"></span>, <span data-bind="    text: Region"></span>
-                <span
-                    data-bind="text: PostalCode"></span>
-                <br />
-                <span data-bind="text: Country"></span>
-                <br />
+                <span data-bind="text: PostalCode"></span><br />
+                <span data-bind="text: Country"></span><br />
+
             </fieldset>
+
+
             <fieldset class="col-md-4">
+
                 <legend class="muted">Shipping Address
-                    <button class="btn btn-inverse btn-xs" data-bind="click: $parent.editShipAddress">Edit</button>
-                </legend><strong data-bind="text: ShipName"></strong>
-                <br />
-                <span data-bind="text: ShipAddress"></span>
-                <br />
+                    <button class="btn btn-inverse btn-xs" 
+                        data-bind="click: $parent.editShipAddress">
+                        Edit
+                    </button>
+                </legend>
+
+                <strong data-bind="text: ShipName"></strong><br />
+                <span data-bind="text: ShipAddress"></span><br />
                 <span data-bind="text: ShipCity"></span>, <span data-bind="    text: ShipRegion"></span>
-                <span
-                    data-bind="text: ShipPostalCode"></span>
-                <br />
-                <span data-bind="text: ShipCountry"></span>
-                <br />
+                <span data-bind="text: ShipPostalCode"></span><br />
+                <span data-bind="text: ShipCountry"></span><br />
+
             </fieldset>
+
+
             <div class="col-md-2">
+
                 <label>
                     <strong>Order Date</strong>
                 </label>
-                <input class="form-control" type="text" class="input-sm" data-bind="datepicker: {}, dateString: OrderDate" />
+                <input class="form-control" type="text" class="input-sm" 
+                    data-bind="datepicker: {}, dateString: OrderDate" />
+
+
                 <label>
                     <strong>Required Date</strong>
                 </label>
-                <input class="form-control" type="text" class="input-sm" data-bind="datepicker: {}, dateString: RequiredDate" />
+                <input class="form-control" type="text" class="input-sm" 
+                    data-bind="datepicker: {}, dateString: RequiredDate" />
+
             </div>
+
+
             <h4 class="col-md-2 muted text-right">
-
                 <i>Order #</i><i data-bind="text: OrderID"></i>
-
             </h4>
         </div>
     </div>
+
+
+
     <div class="row" data-bind="compose: 'ordersubviews/orderlines.html'"></div>
+
 </div>

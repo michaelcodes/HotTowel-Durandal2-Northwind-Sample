@@ -201,7 +201,6 @@
     <Content Include="App\viewmodels\home.js" />
     <Content Include="App\viewmodels\order.js" />
     <Content Include="App\viewmodels\orders.js" />
-    <Content Include="App\views\footer.html" />
     <Content Include="App\views\ordersubviews\actions.html" />
     <Content Include="App\views\ordersubviews\billingaddress.html" />
     <Content Include="App\views\ordersubviews\orderlines.html" />

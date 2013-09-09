@@ -9,11 +9,15 @@
                 </tr>
             </thead>
             <tbody data-bind="foreach: orders">
+
                 <tr data-bind="click: $root.gotoOrder">
+
                     <td data-bind="text: OrderID"></td>
                     <td data-bind="text: moment(OrderDate).format('LL')"></td>
                     <td data-bind="text: Customer_CompanyName"></td>
+
                 </tr>
+
             </tbody>
         </table>
     </div>
